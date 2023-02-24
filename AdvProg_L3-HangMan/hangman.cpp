@@ -54,7 +54,7 @@ bool isCharInWord(const char ch, const string& word)
     bool check = false;
     int len = word.length();
     for (int i = 0; i < len; i++) {
-        if (word[i] == char) {
+        if (word[i] == ch) {
             check = true;
             break;
         }
@@ -132,7 +132,7 @@ void updateSecretWord(string& secretWord, const char ch, const string& word)
 void updateEnteredChars(const char ch, string& chars){
     // TODO: append the character ch is in end of the text chars
     chars += ch;
-
+    chars += ' ';
 }
 
 /***
