@@ -56,6 +56,7 @@ bool isCharInWord(const char ch, const string& word)
     for (int i = 0; i < len; i++) {
         if (word[i] == ch) {
             check = true;
+            break;
         }
     }
         // TODO: return true if ch is in word else return false
@@ -75,9 +76,7 @@ string chooseWordFromList(const vector<string>& wordList, int index)
     string answer = wordList.at(index);
     int len = answer.length();
         for (int i = 0; i < len; i++) {
-            if (answer[i] >= 'A' and answer[i] <= 'Z') {
-                answer[i] = answer[i] + 32;
-            }
+            answer[i] = tolower(answer[i]);
         }
     return answer;
 }
@@ -142,9 +141,11 @@ void updateEnteredChars(const char ch, string& chars){
     Returns:
         void
 ***/
-void updateIncorrectGuess(int& incorrectGuess){
+void updateIncorrectGuess(int& incorrectGuess) {
     // TODO: increase the value of incorrectGuess by 1
-    incorrectGuess++;
+    if (isCharInWord) {
+        incorrectGuess++;
+    }
 }
 
 /***
