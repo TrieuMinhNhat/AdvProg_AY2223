@@ -17,7 +17,7 @@ using std::cin;
 int generateRandomNumber(const int min, const int max)
 {
     // TODO: Return a random integer number between min and max
-    return min + (rand() % g(max - min + 1));
+    return min + (rand() % (max - min + 1));
 
 }
 
@@ -159,7 +159,7 @@ void updateIncorrectGuess(int& incorrectGuess) {
 ***/
 void processData(const char ch, const string& word,string& secretWord,string& correctChars,int& incorrectGuess, string& incorrectChars)
 {
-    if (isCharInWord(ch,word) {
+    if (isCharInWord(ch,word)) {
         updateSecretWord(secretWord, ch, word);
         updateEnteredChars(ch, correctChars);
     }
