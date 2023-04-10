@@ -154,15 +154,13 @@ bool isCorrectChar(char ch, const string& mask)
 ***/
 bool isWholeWord(const string& mask)
 {
-	bool answer = true;;
 	//Write your code here
-	for (auto x : mask) {
+	for (char x : mask) {
 		if (x == '_' or x== '-') {
-			answer = false;
-			break;
+			return 0;
 		}
 	}
-	return answer;
+	return 1;
 }
 
 /***
@@ -182,7 +180,7 @@ bool wordConformToMask(const string& word, const string& mask, char ch)
 	bool answer = true;
 	//Write your code here
 	bool inword = false;
-	for (auto x : word) {
+	for (char x : word) {
 		if (ch == x) {
 			inword = true;
 			break;
@@ -220,7 +218,7 @@ bool wordConformToMask(const string& word, const string& mask, char ch)
 vector<string> filterWordsByMask(const vector<string>& words, const string& mask, char ch)
 {
 	vector<string> answer;
-	//Write your code here
+	/*Write your code here
 	for (string word : words) {
 		bool check = true;
 		for (int i = 0; i<int(word.length()); i++) {
@@ -242,6 +240,9 @@ vector<string> filterWordsByMask(const vector<string>& words, const string& mask
 				answer.push_back(word);
 			}
 		}
+	}*/
+	for (string word : words) {
+		if (wordConformToMask(word, mask, ch)) answer.push_back(word);
 	}
 	return answer;
 }
