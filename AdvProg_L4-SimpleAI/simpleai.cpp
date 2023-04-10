@@ -24,7 +24,7 @@ int readWordLen()
 	Returns:
 		answer (vector<string>) : A set or word from the vocabulary where the number of character is equal to wordLen
 ***/
-vector<string> filterwordsbylen(int wordlen, const vector<string>& vocabulary)
+vector<string> filterWordsByLen(int wordlen, const vector<string>& vocabulary)
 {
 	vector<string> answer;
 	//write your code here
