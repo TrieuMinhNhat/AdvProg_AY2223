@@ -28,11 +28,13 @@ vector<string> filterwordsbylen(int wordlen, const vector<string>& vocabulary)
 {
 	vector<string> answer;
 	//write your code here
-	for (int i = 0; i<int(vocabulary.size()); i++) {
-		if (vocabulary[i].size() == wordlen) {
-			answer.push_back(vocabulary[i]);
+	for (auto word : vocabulary) {
+		if (int(word.length()) == wordlen) {
+			answer.push_back(word);
 		}
 	}
+
+
 	return answer;
 }
 
