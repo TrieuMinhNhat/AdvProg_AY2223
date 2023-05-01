@@ -9,6 +9,11 @@
 void Painter::setColor(SDL_Color color) 
 { 
     // TODO: set the color value for the Painter and set Render Draw Color
+        m_color = color; // set the color value for the Painter
+        SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a); // set the Render Draw Color
+    
+
+
 }
 
 
@@ -21,6 +26,12 @@ void Painter::setColor(SDL_Color color)
 void Painter::jumpForward(int numPixel)
 {
     // TODO: jump the painter forward
+    int newX = m_x + numPixel * cos(m_angle * M_PI / 180);
+    int newY = m_y + numPixel * sin(m_angle * M_PI / 180);
+
+    // Update the painter's position
+    m_x = newX;
+    m_y = newY;
 }
 
 
@@ -33,6 +44,8 @@ void Painter::jumpForward(int numPixel)
 void Painter::jumpBackward(int numPixel)
 {
     // TODO: jump the painter backward
+    int newX = m_position.x - numPixel;
+    m_position = { newX, m_position.y };
 }
 
 
@@ -44,7 +57,8 @@ void Painter::jumpBackward(int numPixel)
 ***/       
 void Painter::turnLeft(double degree)
 {
-    // TODO: rotate left the painter   
+    // TODO: rotate left the painter
+    m_angle -= degree;
 }
 
 
@@ -56,7 +70,20 @@ void Painter::turnLeft(double degree)
 ***/     
 void Painter::turnRight(double degree)
 {
-    // TODO: rotate right the painter   
+    // TODO: rotate right the painter  
+    double radians = degree * M_PI / 180.0;
+
+    // Rotate image surface
+    SDL_Surface* rotatedSurface = rotozoomSurface(m_surface, 0, -radians, 1.0);
+
+    // Update texture with rotated surface
+    SDL_Texture* rotatedTexture = SDL_CreateTextureFromSurface(m_renderer, rotatedSurface);
+    SDL_FreeSurface(rotatedSurface);
+    SDL_DestroyTexture(m_texture);
+    m_texture = rotatedTexture;
+
+    // Update rotation angle
+    m_rotationAngle -= degree;
 }
 
 /***  
@@ -68,6 +95,13 @@ void Painter::turnRight(double degree)
 void Painter::randomColor()
 {
     // TODO: set random color    
+    Generate random RGB values between 0 and 255
+        Uint8 r = rand() % 256;
+    Uint8 g = rand() % 256;
+    Uint8 b = rand() % 256;
+
+    // Set the color with the new RGB values
+    setColor({ r, g, b, 255 });
 }
 
 
