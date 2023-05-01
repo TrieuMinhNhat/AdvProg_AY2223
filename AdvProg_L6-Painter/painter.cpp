@@ -25,8 +25,8 @@ void Painter::setColor(SDL_Color color)
 void Painter::jumpForward(int numPixel)
 {
     // TODO: jump the painter forward
-    this->x += numPixel * cos(this->angle);
-    this->y -= numPixel * sin(this->angle);
+    this->x += numPixel * cos(this->angle * 3.141592653 / 180);
+    this->y -= numPixel * sin(this->angle * 3.141592653 / 180);
 }
 
 
@@ -39,8 +39,8 @@ void Painter::jumpForward(int numPixel)
 void Painter::jumpBackward(int numPixel)
 {
     // TODO: jump the painter backward
-    this->x -= numPixel * cos(this->angle);
-    this->y -= numPixel * sin(this->angle);
+    this->x -= numPixel * cos(this->angle * 3.141592655 / 180);
+    this->y += numPixel * sin(this->angle * 3.141592655 / 180);
 }
 
 
@@ -53,7 +53,10 @@ void Painter::jumpBackward(int numPixel)
 void Painter::turnLeft(double degree)
 {
     // TODO: rotate left the painter
-    this->angle = (degree + this->angle) % 360;
+    this->angle += degree;
+    while (this->angle >= 360) {
+        this->angle -= 360;
+    }
 }
 
 
@@ -66,8 +69,9 @@ void Painter::turnLeft(double degree)
 void Painter::turnRight(double degree)
 {
     // TODO: rotate right the painter
-    if (this->angle - degree >= 0) this->angle = (this->angle - degree) % 360;
-    else this->angle = this->angle - degree;
+    this->angle -= degree;
+    while (this->angle >= 360) this->angle -= 360;
+    while (this->angle <= -360) this->angle += 360;
 }
 
 /***  
@@ -78,7 +82,7 @@ void Painter::turnRight(double degree)
 ***/
 void Painter::randomColor()
 {
-    int r = rand() % 256, g = rand() % 256, b = rand() % 256;
+    Uint8 r = rand() % 256, g = rand() % 256, b = rand() % 256;
     SDL_Color ans = { r, g, b };
     this->color = ans;
 }
