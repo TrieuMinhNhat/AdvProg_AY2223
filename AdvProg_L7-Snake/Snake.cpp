@@ -25,7 +25,7 @@ Snake::~Snake()
             p = nextNode;
     }
     */
-    while (SnakeNode p = tail; p != NULL) {
+    while (SnakeNode p = tail and p != NULL) {
         SnakeNode* nextNode = p->next;
         p = nextNode;
     }
@@ -101,9 +101,9 @@ void Snake::slideTo(Position newPosition)
 
 		// move it to the head of the snake
         /* YOUR CODE HERE */
-		holdTailNode->position = newPosition;
+		oldTailNode->position = newPosition;
         head->next = oldTailNode;
-        head = oldTailNode; ead = oldTailNode;
+        head = oldTailNode; head = oldTailNode;
 	}
 }
 
